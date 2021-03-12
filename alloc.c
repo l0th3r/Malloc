@@ -93,10 +93,16 @@ meta_data* try_freed_space(control_s* ctrl_t, size_t size)
             if(to_return)
             {
                 if(ctrl_t->tmp->size < to_return->size)
+                {
                     to_return = ctrl_t->tmp;
+                    to_return->free = 0;
+                }
             }
             else
+            {
                 to_return = ctrl_t->tmp;
+                to_return->free = 0;
+            }
         }
         
         ctrl_t->tmp = ctrl_t->tmp->next;
